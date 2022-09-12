@@ -44,7 +44,7 @@ public class PostsController {
         posts.add(newPost);
     }
 
-    @PutMapping("/id")
+    @PutMapping("/{id}")
     public void updatePost(@RequestBody Post updatedPost, @PathVariable long id) {
         Post post = findPostById(id);
         if(post == null) {
@@ -61,7 +61,7 @@ public class PostsController {
         throw new RuntimeException("Post not found");
     }
 
-    @DeleteMapping ("/id")
+    @DeleteMapping ("/{id}")
     public void DeletePostById(@PathVariable long id) {
         Post post = findPostById(id);
         if (post != null) {

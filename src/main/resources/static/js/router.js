@@ -1,5 +1,5 @@
 import Home from "./views/Home.js";
-import PostIndex, {doStuff} from "./views/PostIndex.js";
+import PostIndex, {postSetup} from "./views/PostIndex.js";
 import About from "./views/About.js";
 import Error404 from "./views/Error404.js";
 import Loading from "./views/Loading.js";
@@ -42,7 +42,7 @@ export default function router(URI) {
             },
             uri: '/posts',
             title: 'All Posts',
-            createView: doStuff()
+            viewEvent: postSetup
         },
         '/about': {
             returnView: About,
