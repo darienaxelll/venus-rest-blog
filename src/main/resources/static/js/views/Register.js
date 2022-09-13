@@ -10,28 +10,44 @@ export default function Register(props) {
             </head>
             <body>
                 <h1>Register</h1>
-        
-                <form id="register-form">
-                    <label for="username">Username</label>
-                    <input id="username" name="username" type="text"/>
-                    <label for="email">Email</label>
-                    <input id="email" name="email" type="email">
-                    <label for="password">Password</label>
-                    <input id="password" name="password" type="password"/>
-                    <button id="register-btn" type="button">Register</button>
-                </form>
+                
+            <form id="register-form">
+              <div class="mb-3">
+                <label for="username" class="form-label">Username</label>
+                <input id="username" class="form-control" name="username" type="text"/>
+              </div>
+              <div class="mb-3">
+                <label for="email" class="form-label">Email address</label>
+                <input type="email" class="form-control" id="email" aria-describedby="emailHelp">
+                <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+              </div>
+              <div class="mb-3">
+                <label for="password" class="form-label">Password</label>
+                <input type="password" class="form-control" id="password">
+              </div>
+              <div class="mb-3 form-check">
+                <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                <label class="form-check-label" for="exampleCheck1">Check me out</label>
+              </div>
+              <button id="register-btn" type="submit" class="btn btn-primary">Submit</button>
+            </form>
             </body>
         </html>
 `;
 }
 
 export function RegisterEvent(){
-    $("#register-btn").click(function(){
+    const registerButton = document.querySelector("#register-btn");
+    registerButton.addEventListener("click", function (e) {
+
+        const usernameField = document.querySelector("#username");
+        const emailField = document.querySelector("#email");
+        const passwordField = document.querySelector("#password");
 
         let newUser = {
-            username: $("#username").val(),
-            email: $("#email").val(),
-            password: $("#password").val()
+            username: usernameField.value,
+            email: emailField.value,
+            password: passwordField.value
         }
 
         console.log(newUser);
@@ -42,7 +58,7 @@ export function RegisterEvent(){
             body: JSON.stringify(newUser)
         }
 
-        fetch("http://localhost:8080/api/users", request)
+        fetch("http://localhost:8080/api/users/create", request)
             .then(response => {
                 console.log(response.status);
                 CreateView("/");

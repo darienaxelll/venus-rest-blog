@@ -2,19 +2,22 @@ package darien.venusrestblog.data;
 
 import lombok.*;
 import java.time.LocalDate;
+import java.util.Collection;
 
-@NoArgsConstructor
-@AllArgsConstructor
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @ToString
 
 public class User {
     private long id;
     private String username;
     private String email;
+    private String password;
     private LocalDate createdAt;
-    private Role role;
-
-    public enum Role {USER, ADMIN}
+    private UserRole role;
+    private Collection<Post> posts;
 }
+
+

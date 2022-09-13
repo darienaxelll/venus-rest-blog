@@ -1,6 +1,7 @@
 package darien.venusrestblog;
 
 import darien.venusrestblog.data.Post;
+import darien.venusrestblog.data.User;
 import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -40,6 +41,13 @@ public class PostsController {
     private void createPost(@RequestBody Post newPost){
         System.out.println(newPost);
         newPost.setId(nextId);
+
+        User fakeAuthor = new User();
+        fakeAuthor.setId(99);
+        fakeAuthor.setUsername("fake author");
+        fakeAuthor.setEmail("fakeAuthor@stuff.com");
+        newPost.setAuthor(fakeAuthor);
+
         nextId++;
         posts.add(newPost);
     }

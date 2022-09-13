@@ -1,11 +1,31 @@
 export default function Navbar(props) {
     return `
-        <nav>
-            <a href="/" data-link>Home</a>
-            <a href="/posts" data-link>Posts</a>
-            <a href="/about" data-link>About</a>
-            <a href="/login" data-link>Login</a>
-            <a href="/register" data-link>Register</a>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+          <div class="container-fluid">
+            <a class="navbar-brand" href="/" data-link>PostBook<i class="fa-solid fa-signs-post"></i></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+              <ul class="navbar-nav">
+                <li class="nav-item">
+                  <a href="/" data-link class="nav-link active" aria-current="page">Home</a>
+                </li>
+                <li class="nav-item">
+                  <a href="/posts" data-link class="nav-link">Posts</a>
+                </li>
+                <li class="nav-item">
+                  <a href="/me" data-link class="nav-link">About Me</a>
+                </li>
+                <li class="nav-item">
+                  <a href="/login" data-link class="nav-link">Login</a>
+                </li>
+                <li class="nav-item">
+                  <a href="/register" data-link class="nav-link">Register</a>
+                </li>
+              </ul>
+            </div>
+          </div>
         </nav>
     `;
 }

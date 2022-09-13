@@ -1,12 +1,12 @@
 import Home from "./views/Home.js";
 import PostIndex, {postSetup} from "./views/PostIndex.js";
-import About from "./views/About.js";
 import Error404 from "./views/Error404.js";
 import Loading from "./views/Loading.js";
 import Login from "./views/Login.js";
 import LoginEvent from "./auth.js";
 import Register from "./views/Register.js"
 import {RegisterEvent} from "./views/Register.js";
+import meIndex, {meJavaScript} from "./views/User.js";
 
 /**
  * Returns the route object for a specific route based on the given URI
@@ -35,20 +35,23 @@ export default function router(URI) {
             title: 'Register',
             viewEvent: RegisterEvent
         },
+        '/me': {
+            returnView: meIndex,
+            state: {
+                me: '/api/users/me'
+            },
+            uri: '/me',
+            title: 'About Me',
+            viewEvent: meJavaScript
+        },
         '/posts': {
             returnView: PostIndex,
             state: {
                 posts: '/api/posts'
             },
             uri: '/posts',
-            title: 'All Posts',
+            title: 'Posts',
             viewEvent: postSetup
-        },
-        '/about': {
-            returnView: About,
-            state: {},
-            uri: '/about',
-            title: 'About',
         },
         '/error': {
             returnView: Error404,
