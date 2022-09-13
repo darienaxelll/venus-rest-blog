@@ -43,9 +43,9 @@ public class PostsController {
         newPost.setId(nextId);
 
         User fakeAuthor = new User();
-        fakeAuthor.setId(99);
-        fakeAuthor.setUsername("fake author");
-        fakeAuthor.setEmail("fakeAuthor@stuff.com");
+        fakeAuthor.setId(1);
+        fakeAuthor.setUsername("darienaxell");
+        fakeAuthor.setEmail("darien.axell@icloud.com");
         newPost.setAuthor(fakeAuthor);
 
         nextId++;

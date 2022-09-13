@@ -3,7 +3,11 @@ import CreateView from "../createView.js"
 let me;
 
 export default function meHTML(props) {
+
     me = props.me;
+
+    const postsHTML = postHTML(props.me);
+
     return `
     <div class="card text-white bg-dark mb-3 mt-4" style="max-width: 18rem;">
       <div class="card-header">User Info <i class="fa-solid fa-user"></i></div>
@@ -42,15 +46,42 @@ export default function meHTML(props) {
             </span>
           </div>
         </div>
+        
         <button id="submitPassword" type="button" class="btn btn-light mt-3">Submit</button>
+        <button id="togglePassword" type="button" class="btn btn-light mt-3 ml-4">See Passwords</button>
         
         </form>
     </div>
     `;
 }
 
+function postHTML(me) {
+    let postsHTML = `
+         <thead>
+        <tr>
+          <th scope="col">Title</th>
+          <th scope="col">Content</th>
+        </tr>
+      </thead>
+      <tbody>
+    `;
+
+    for (let i = 0; i < me.posts.length; i++) {
+        const post = me.posts[i];
+        postsHTML += `
+            <tr>
+            <td>${post.title}</td>
+            <td>${post.content}</td>
+            </tr>
+        `
+    }
+    postsHTML += `</tbody></table>`;
+    return postsHTML;
+}
+
 export function meJavaScript() {
     resetPassword();
+    togglePassword();
 }
 
 function resetPassword() {
@@ -66,5 +97,26 @@ function resetPassword() {
         }
 
         const url = `${USER_API_BASE_URL}/${me.id}/updatePassword?oldPassword=${oldPassword}&newPassword=${newPassword}`
+
+        fetch(url, request)
+            .then(function () {
+                CreateView("/");
+            });
     });
 }
+
+// function togglePassword() {
+//     const toggleBtn = document.querySelector("#toggleButton");
+//
+//     toggleBtn.addEventListener("click", function (e) {
+//         const inputs = document.querySelectorAll("input");
+//
+//         for (let i = 0; i < inputs.length; i++) {
+//             if (inputs[i].getAttribute("type") === "password") {
+//                 inputs[i].setAttribute("type", "text");
+//             } else {
+//                 inputs[i].setAttribute("type", "password");
+//             }
+//         }
+//     });
+// }

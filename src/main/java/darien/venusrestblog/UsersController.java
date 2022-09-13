@@ -17,7 +17,7 @@ import java.util.List;
 @RequestMapping(value = "/api/users", produces = "application/json")
 public class UsersController {
 
-    private final List<User> users = new ArrayList<>(List.of(new User(1, "darienaxell", "darien.axell@icloud.com", "12345", LocalDate.now(), UserRole.ADMIN, new ArrayList<>())));
+    private final List<User> users = new ArrayList<>(List.of(new User(1, "darienaxell", "darien.axell@icloud.com", "12345678", LocalDate.now(), UserRole.ADMIN, new ArrayList<>())));
     private long nextId = 2;
 
     @GetMapping("")
