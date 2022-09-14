@@ -6,7 +6,7 @@ export default function meHTML(props) {
 
     me = props.me;
 
-    const postsHTML = postHTML(props.me);
+    const postsHTML = postHTML(me);
 
     return `
     <div class="card text-white bg-dark mb-3 mt-4" style="max-width: 18rem;">
@@ -52,11 +52,15 @@ export default function meHTML(props) {
         
         </form>
     </div>
+    
+    <hr>
+    
+    ${postsHTML}
     `;
 }
 
 function postHTML(me) {
-    let postsHTML = `
+    let html = `
          <thead>
         <tr>
           <th scope="col">Title</th>
@@ -68,15 +72,15 @@ function postHTML(me) {
 
     for (let i = 0; i < me.posts.length; i++) {
         const post = me.posts[i];
-        postsHTML += `
+        html += `
             <tr>
             <td>${post.title}</td>
             <td>${post.content}</td>
             </tr>
         `
     }
-    postsHTML += `</tbody></table>`;
-    return postsHTML;
+    html += `</tbody></table>`;
+    return html;
 }
 
 export function meJavaScript() {
