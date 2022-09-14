@@ -169,6 +169,7 @@ function setupSaveHandler() {
 
         fetch(url, request)
             .then(function(response) {
+                console.log(response.status)
                 // check status code
                 CreateView("/posts");
             })

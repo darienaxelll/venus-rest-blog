@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 import javax.validation.Valid;
 import javax.validation.constraints.Size;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -38,6 +39,7 @@ public class UsersController {
 
     @PostMapping(path = "/create")
     private void createUser(@RequestBody User newUser){
+        newUser.setCreatedAt(LocalDate.now());
         usersRepository.save(newUser);
     }
 

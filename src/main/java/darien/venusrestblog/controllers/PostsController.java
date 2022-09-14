@@ -2,6 +2,7 @@ package darien.venusrestblog.controllers;
 
 import darien.venusrestblog.data.Post;
 import darien.venusrestblog.repository.PostsRepository;
+import darien.venusrestblog.repository.UsersRepository;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
@@ -12,9 +13,11 @@ import java.util.Optional;
 public class PostsController {
 
     private final PostsRepository postsRepository;
+    private final UsersRepository usersRepository;
 
-    public PostsController(PostsRepository postRepository) {
+    public PostsController(PostsRepository postRepository, UsersRepository usersRepository) {
         this.postsRepository = postRepository;
+        this.usersRepository = usersRepository;
     }
 
     @GetMapping("")

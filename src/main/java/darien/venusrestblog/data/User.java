@@ -1,5 +1,6 @@
 package darien.venusrestblog.data;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 import javax.persistence.*;
 import javax.validation.constraints.Email;
@@ -42,7 +43,8 @@ public class User {
     @Column
     private UserRole role;
 
-    @Transient
+    @OneToMany(mappedBy = "author")
+    @JsonIgnoreProperties("author")
     private Collection<Post> posts;
 }
 
