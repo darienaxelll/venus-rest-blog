@@ -25,10 +25,6 @@ export default function Register(props) {
                 <label for="password" class="form-label">Password</label>
                 <input type="password" class="form-control" id="password">
               </div>
-              <div class="mb-3 form-check">
-                <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                <label class="form-check-label" for="exampleCheck1">Check me out</label>
-              </div>
               <button id="register-btn" type="submit" class="btn btn-primary">Submit</button>
             </form>
             </body>
@@ -58,7 +54,7 @@ export function RegisterEvent(){
             body: JSON.stringify(newUser)
         }
 
-        fetch("http://localhost:8080/api/users/create", request)
+        fetch(USER_API_BASE_URL + "/create", request)
             .then(response => {
                 console.log(response.status);
                 CreateView("/");

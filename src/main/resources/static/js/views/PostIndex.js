@@ -158,7 +158,7 @@ function setupSaveHandler() {
             body: JSON.stringify(post)
         }
 
-        let url = "http://localhost:8080/api/posts";
+        let url = POST_API_BASE_URL;
 
         // if we are updating post, change request and url
 
