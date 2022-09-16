@@ -9,6 +9,12 @@ export default function meHTML(props) {
     const postsHTML = postHTML(me);
 
     return `
+    <div>
+        <h2>${props.me.username}</h2>
+        <h2>${props.me.email}</h2>
+    </div>
+
+    <div>
     <div class="card text-white bg-dark mb-3 mt-4" style="max-width: 18rem;">
       <div class="card-header">User Info <i class="fa-solid fa-user"></i></div>
       <div class="card-body">
@@ -52,16 +58,18 @@ export default function meHTML(props) {
         
         </form>
     </div>
+    </div>
     
-    <hr>
-    
-    ${postsHTML}
+    <div>
+        ${postsHTML}
+    </div>
     `;
 }
 
 function postHTML(me) {
     let html = `
-         <thead>
+        <table class="table table-success table-striped">
+        <thead>
         <tr>
           <th scope="col">Title</th>
           <th scope="col">Content</th>
@@ -70,6 +78,7 @@ function postHTML(me) {
       <tbody>
     `;
 
+    // add a row to the table for each user post
     for (let i = 0; i < me.posts.length; i++) {
         const post = me.posts[i];
         html += `
@@ -85,7 +94,6 @@ function postHTML(me) {
 
 export function meJavaScript() {
     resetPassword();
-    togglePassword();
 }
 
 function resetPassword() {
@@ -109,18 +117,18 @@ function resetPassword() {
     });
 }
 
-// function togglePassword() {
-//     const toggleBtn = document.querySelector("#toggleButton");
-//
-//     toggleBtn.addEventListener("click", function (e) {
-//         const inputs = document.querySelectorAll("input");
-//
-//         for (let i = 0; i < inputs.length; i++) {
-//             if (inputs[i].getAttribute("type") === "password") {
-//                 inputs[i].setAttribute("type", "text");
-//             } else {
-//                 inputs[i].setAttribute("type", "password");
-//             }
-//         }
-//     });
-// }
+function togglePassword() {
+    const toggleBtn = document.querySelector("#toggleButton");
+
+    toggleBtn.addEventListener("click", function (e) {
+        const inputs = document.querySelectorAll("input");
+
+        for (let i = 0; i < inputs.length; i++) {
+            if (inputs[i].getAttribute("type") === "password") {
+                inputs[i].setAttribute("type", "text");
+            } else {
+                inputs[i].setAttribute("type", "password");
+            }
+        }
+    });
+}

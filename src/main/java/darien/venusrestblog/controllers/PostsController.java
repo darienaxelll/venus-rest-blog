@@ -1,24 +1,25 @@
 package darien.venusrestblog.controllers;
 
+import darien.venusrestblog.data.Category;
 import darien.venusrestblog.data.Post;
+import darien.venusrestblog.data.User;
+import darien.venusrestblog.repository.CategoriesRepository;
 import darien.venusrestblog.repository.PostsRepository;
 import darien.venusrestblog.repository.UsersRepository;
+import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-
+@AllArgsConstructor
 @RestController
 @RequestMapping (value = "/api/posts", produces = "application/json")
 public class PostsController {
-
     private final PostsRepository postsRepository;
     private final UsersRepository usersRepository;
-
-    public PostsController(PostsRepository postRepository, UsersRepository usersRepository) {
-        this.postsRepository = postRepository;
-        this.usersRepository = usersRepository;
-    }
+    private CategoriesRepository categoriesRepository;
 
     @GetMapping("")
     public List<Post> fetchPosts() {
@@ -32,17 +33,17 @@ public class PostsController {
 
     @PostMapping(path = "")
     private void createPost(@RequestBody Post newPost){
-//        System.out.println(newPost);
-//        newPost.setId(nextId);
-//
-//        User fakeAuthor = new User();
-//        fakeAuthor.setId(1);
-//        fakeAuthor.setUsername("darienaxell");
-//        fakeAuthor.setEmail("darien.axell@icloud.com");
-//        newPost.setAuthor(fakeAuthor);
-//
-//        nextId++;
-//        posts.add(newPost);
+        User author = usersRepository.findById(2L).get();
+        newPost.setAuthor(author);
+        newPost.setCategories(new ArrayList<>());
+
+        // use first 2 categories for the post by default
+        Category cat1 = categoriesRepository.findById(1L).get();
+        Category cat2 = categoriesRepository.findById(2L).get();
+
+        newPost.getCategories().add(cat1);
+        newPost.getCategories().add(cat2);
+
         postsRepository.save(newPost);
     }
 

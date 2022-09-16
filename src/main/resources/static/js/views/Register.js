@@ -5,12 +5,27 @@ export default function Register(props) {
     <!DOCTYPE html>
         <html>
             <head>
-                <meta charset="UTF-8"/>
-                <title>Register</title>
+            <meta charset="UTF-8"/>
+            <title>Register</title>
+            <style>
+                body {
+                    background-color: black;
+                }
+                #register-div {
+                    margin-top: 50px;
+                    margin-left: 10%;
+                    display: block;
+                    position: relative;
+                    background-color: white;
+                    width: 75%;
+                    padding: 10px;
+                    border: 2px solid white;
+                    border-radius: 5px;
+                }
+            </style>
             </head>
             <body>
-                <h1>Register</h1>
-                
+            <div id="register-div">
             <form id="register-form">
               <div class="mb-3">
                 <label for="username" class="form-label">Username</label>
@@ -24,9 +39,13 @@ export default function Register(props) {
               <div class="mb-3">
                 <label for="password" class="form-label">Password</label>
                 <input type="password" class="form-control" id="password">
+                <span id="passwordHelpInline" class="form-text">
+                  Must be 8-20 characters long.
+                </span>
               </div>
               <button id="register-btn" type="submit" class="btn btn-primary">Submit</button>
             </form>
+            </div>
             </body>
         </html>
 `;

@@ -10,23 +10,55 @@ export default function PostIndex(props) {
 
     return `
         <header>
-            <h1>Posts Page</h1>
+            <style>
+        body {
+            background-color:black;
+        }
+        
+        #table-div {
+            margin: 20px 20px 0 20px;
+            border: 1px solid white;
+            border-radius: 5px;
+        }
+        
+        table {
+            border-radius: 5px;
+        }
+        
+        #form-div {
+        background-color: white;
+            width: 50%;
+            padding: 15px;
+            border: 2px solid grey;
+            border-radius: 5px;
+            display: block;
+            position: relative;
+            left: 25%;
+            top: 25%;
+        }
+        
+        #deleteBtn {
+            margin-left: 25px;
+        }
+        </style>
         </header>
-        <main>
-            <div>
+        <body>
+            <div id="table-div">
                 ${postsHTML}
             </div>
             <hr>
+            <div id="form-div">
             <div class="mb-3">
-              <label for="title" class="form-label">Post Title</label>
-              <input type="email" class="form-control" id="title" placeholder="Enter Post Title">
+              <label for="title" class="form-label"><h3>Post Title</h3></label>
+              <input type="email" class="form-control" id="title" placeholder="Enter Title">
             </div>
             <div class="mb-3">
-              <label for="content" class="form-label">Content Area</label>
+              <label for="content" class="form-label"><h3>Content Area</h3></label>
               <textarea class="form-control" id="content" rows="2" placeholder="Enter Text..."></textarea>
             </div>
             <button data-id="0" id="saveButton" type="button" class="btn btn-outline-primary">Save Post</button>
-        </main>
+            </div>
+        </body>
     `;
 }
 
@@ -38,21 +70,38 @@ function generatePostHTML(posts) {
           <th scope="col">Title</th>
           <th scope="col">Content</th>
           <th scope="col">Author</th>
+          <th scope="col">Category</th>
           <th scope="col">Options</th>
-          <th scope="col"></th>
         </tr>
       </thead>
       <tbody>
       `;
     for (let i = 0; i < posts.length; i++) {
         const post = posts[i];
+
+        let categories = '';
+        if(post.categories) {
+            for (let j = 0; j < post.categories.length; j++) {
+                if (categories !== "") {
+                    categories += ", ";
+                }
+                categories += post.categories[j].name;
+            }
+        }
+
+
+        let authorName = "";
+        if (post.author) {
+            authorName = post.author.username;
+        }
+
         postsHTML += `
             <tr>
             <td>${post.title}</td>
             <td>${post.content}</td>
-            <td>${post.author.username}</td>
-            <td><button data-id=${post.id} type="button" class="btn btn-secondary editPost">Edit</button></td>
-            <td><button data-id=${post.id} class="btn btn-danger deletePost">Delete</button></td>
+            <td>${authorName}</td>
+            <td>${categories}</td>
+            <td><button id="editBtn" data-id=${post.id} type="button" class="btn btn-secondary editPost">Edit</button> <button id="deleteBtn" data-id=${post.id} class="btn btn-danger deletePost">Delete</button></td>
             </tr>
         `
     }
