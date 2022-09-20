@@ -2,6 +2,33 @@ export default function Loading(props) {
     return `
     <header>
         <style>
+            
+            @-webkit-keyframes spin {
+            0%   {
+                -webkit-transform: rotate(0deg);  /* Chrome, Opera 15+, Safari 3.1+ */
+                -ms-transform: rotate(0deg);  /* IE 9 */
+                transform: rotate(0deg);  /* Firefox 16+, IE 10+, Opera */
+            }
+            
+            100% {
+                -webkit-transform: rotate(360deg);  /* Chrome, Opera 15+, Safari 3.1+ */
+                -ms-transform: rotate(360deg);  /* IE 9 */
+                transform: rotate(360deg);  /* Firefox 16+, IE 10+, Opera */
+            }
+            
+            @keyframes spin {
+            0%   {
+                -webkit-transform: rotate(0deg);  /* Chrome, Opera 15+, Safari 3.1+ */
+                -ms-transform: rotate(0deg);  /* IE 9 */
+                transform: rotate(0deg);  /* Firefox 16+, IE 10+, Opera */
+            }
+            
+            100% {
+                -webkit-transform: rotate(360deg);  /* Chrome, Opera 15+, Safari 3.1+ */
+                -ms-transform: rotate(360deg);  /* IE 9 */
+                transform: rotate(360deg);  /* Firefox 16+, IE 10+, Opera */
+            }
+                
             #loader-wrapper {
                  position: fixed;
                  top: 0;
@@ -12,6 +39,9 @@ export default function Loading(props) {
             }
             
             #loader {
+                 -webkit-animation: spin 2s linear infinite;
+                animation: spin 2s linear infinite;
+    
                  display: block;
                  position: relative;
                  left: 50%;
@@ -23,9 +53,14 @@ export default function Loading(props) {
                  
                  border: 3px solid transparent;
                  border-top-color: #3498db;
+                 border-radius: 50%;
+
             }
             
             #loader:before {
+               -webkit-animation: spin 3s linear infinite;
+                animation: spin 3s linear infinite;
+                
                 display: block;
                 content: "";
                 position: absolute;
@@ -36,9 +71,13 @@ export default function Loading(props) {
                 
                 border: 3px solid transparent;
                 border-top-color: #e74c3c;
+                border-radius: 50%;
             }
             
             #loader:after {
+                -webkit-animation: spin 3s linear infinite;
+                animation: spin 3s linear infinite;
+                
                 display: block;
                 content: "";
                 position: absolute;
@@ -49,6 +88,7 @@ export default function Loading(props) {
                 
                 border: 3px solid transparent;
                 border-top-color: #f9c922;
+                border-radius: 50%;
             }
         </style>
     </header>
