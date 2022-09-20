@@ -2,33 +2,6 @@ export default function Loading(props) {
     return `
     <header>
         <style>
-            
-            @-webkit-keyframes spin {
-            0%   {
-                -webkit-transform: rotate(0deg);  /* Chrome, Opera 15+, Safari 3.1+ */
-                -ms-transform: rotate(0deg);  /* IE 9 */
-                transform: rotate(0deg);  /* Firefox 16+, IE 10+, Opera */
-            }
-            
-            100% {
-                -webkit-transform: rotate(360deg);  /* Chrome, Opera 15+, Safari 3.1+ */
-                -ms-transform: rotate(360deg);  /* IE 9 */
-                transform: rotate(360deg);  /* Firefox 16+, IE 10+, Opera */
-            }
-            
-            @keyframes spin {
-            0%   {
-                -webkit-transform: rotate(0deg);  /* Chrome, Opera 15+, Safari 3.1+ */
-                -ms-transform: rotate(0deg);  /* IE 9 */
-                transform: rotate(0deg);  /* Firefox 16+, IE 10+, Opera */
-            }
-            
-            100% {
-                -webkit-transform: rotate(360deg);  /* Chrome, Opera 15+, Safari 3.1+ */
-                -ms-transform: rotate(360deg);  /* IE 9 */
-                transform: rotate(360deg);  /* Firefox 16+, IE 10+, Opera */
-            }
-                
             #loader-wrapper {
                  position: fixed;
                  top: 0;
@@ -36,6 +9,8 @@ export default function Loading(props) {
                  width: 100%;
                  height: 100%;
                  z-index: 1000;
+                 
+                 background-color: #222;
             }
             
             #loader {
@@ -90,11 +65,56 @@ export default function Loading(props) {
                 border-top-color: #f9c922;
                 border-radius: 50%;
             }
+            
+            @keyframes spin {
+            0%   {
+               -webkit-transform: rotate(0deg);  /* Chrome, Opera 15+, Safari 3.1+ */
+                -ms-transform: rotate(0deg);  /* IE 9 */
+                transform: rotate(0deg);  /* Firefox 16+, IE 10+, Opera */
+            }
+            
+            100% {
+                -webkit-transform: rotate(360deg);  /* Chrome, Opera 15+, Safari 3.1+ */
+                -ms-transform: rotate(360deg);  /* IE 9 */
+                transform: rotate(360deg);  /* Firefox 16+, IE 10+, Opera */
+            }
+            
+            @keyframes spin {
+            0%   {
+                -webkit-transform: rotate(0deg);  /* Chrome, Opera 15+, Safari 3.1+ */
+                -ms-transform: rotate(0deg);  /* IE 9 */
+                transform: rotate(0deg);  /* Firefox 16+, IE 10+, Opera */
+            }
+            
+            100% {
+                -webkit-transform: rotate(360deg);  /* Chrome, Opera 15+, Safari 3.1+ */
+                -ms-transform: rotate(360deg);  /* IE 9 */
+                transform: rotate(360deg);  /* Firefox 16+, IE 10+, Opera */
+            }
+            
+            #loader-wrapper .loader-section {
+            position: fixed
+            top: 0;
+            width: 51%;
+            height: 100%;
+            background: #222;
+            z-index: 1000;
+            }
+            
+            #loader-wrapper .loader-section.section-left {
+            left: 0;
+            }
+            #loader-wrapper .loader-section.section-right {
+            right: 0;
+            }
         </style>
     </header>
     <body>
         <div id="loader-wrapper">
             <div id="loader"></div>
+            
+            <div class="loader-section section-left"></div>
+            <div class="loader-section section-right"></div>
         </div>
     </body>
 `;

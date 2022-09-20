@@ -7,6 +7,7 @@ import darien.venusrestblog.repository.CategoriesRepository;
 import darien.venusrestblog.repository.PostsRepository;
 import darien.venusrestblog.repository.UsersRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.security.oauth2.provider.OAuth2Authentication;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -32,10 +33,12 @@ public class PostsController {
     }
 
     @PostMapping(path = "")
-    private void createPost(@RequestBody Post newPost){
-        User author = usersRepository.findById(2L).get();
-        newPost.setAuthor(author);
+    private void createPost(@RequestBody Post newPost, OAuth2Authentication auth){
         newPost.setCategories(new ArrayList<>());
+
+        String username = auth.getName();
+        User author = usersRepository.findByUsername(username);
+        newPost.setAuthor(author);
 
         // use first 2 categories for the post by default
         Category cat1 = categoriesRepository.findById(1L).get();

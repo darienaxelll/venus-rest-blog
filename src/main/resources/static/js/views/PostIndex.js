@@ -1,4 +1,5 @@
 import CreateView from "../createView.js";
+import {getHeaders} from "../auth.js";
 
 let posts;
 
@@ -175,7 +176,7 @@ function setupDeletePostHandler() {
 function deletePost(postId) {
     const request = {
         method: "DELETE",
-        headers: {"Content-Type": "application/json"}
+        headers: getHeaders()
     }
     const url = "http://localhost:8080/api/posts/" + postId;
     fetch(url, request)
@@ -203,7 +204,7 @@ function setupSaveHandler() {
         // make request
         const request = {
             method: "POST",
-            headers: {"Content-Type": "application/json"},
+            headers: getHeaders(),
             body: JSON.stringify(post)
         }
 

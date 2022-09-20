@@ -2,8 +2,10 @@ package darien.venusrestblog.controllers;
 
 
 import darien.venusrestblog.data.User;
+import darien.venusrestblog.data.UserRole;
 import darien.venusrestblog.repository.UsersRepository;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 import javax.validation.Valid;
@@ -16,9 +18,12 @@ import java.util.Optional;
 @RequestMapping(value = "/api/users", produces = "application/json")
 public class UsersController {
 
+    private PasswordEncoder passwordEncoder;
+
     private final UsersRepository usersRepository;
 
-    public UsersController(UsersRepository usersRepository) {
+    public UsersController(PasswordEncoder passwordEncoder, UsersRepository usersRepository) {
+        this.passwordEncoder = passwordEncoder;
         this.usersRepository = usersRepository;
     }
 
@@ -43,6 +48,11 @@ public class UsersController {
 
     @PostMapping(path = "/create")
     private void createUser(@RequestBody User newUser){
+        newUser.setRole(UserRole.USER);
+        String password = newUser.getPassword();
+        password = passwordEncoder.encode(password);
+        newUser.setPassword(password);
+
         newUser.setCreatedAt(LocalDate.now());
         usersRepository.save(newUser);
     }
