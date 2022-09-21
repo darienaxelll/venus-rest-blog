@@ -13,7 +13,7 @@ export default function PostIndex(props) {
         <header>
             <style>
         body {
-            background-color:black;
+            background-color: #222;
         }
         
         #table-div {

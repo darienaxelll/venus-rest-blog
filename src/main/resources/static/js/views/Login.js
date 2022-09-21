@@ -1,21 +1,43 @@
 export default function Login(props) {
     return `<!DOCTYPE html>
 <html>
-<head>
-    <meta charset="UTF-8"/>
-    <title>Log In</title>
-</head>
-<body>
-<h1>Log In</h1>
-
-<form id="login-form">
-    <label for="username">Username</label>
-    <input id="username" name="username" type="text"/>
-    <label for="password">Password</label>
-    <input id="password" name="password" type="password"/>
-    <input id="login-btn" type="submit" value="Log In"/>
-</form>
-</body>
+    <head>
+        <meta charset="UTF-8"/>
+        <title>Log In</title>
+        <style>
+            body {
+                background-color: #222;
+            }
+            
+            form {
+                width: 50%;
+                height: 75%;
+                padding: 10px;
+                background-color: white;
+                margin-top: 15%;
+                margin-left: 25%;
+                border: 2px solid black;
+                border-radius: 5px;
+            }
+        </style>
+    </head>
+    <body>
+    <div>
+        <form>
+          <div class="mb-3">
+            <label for="username" class="form-label">Username</label>
+            <input type="email" class="form-control" id="username" aria-describedby="emailHelp">
+            <div id="note" class="form-text">Speak your mind. Post it.</div>
+          </div>
+          <div class="mb-3">
+            <label for="password" class="form-label">Password</label>
+            <input type="password" class="form-control" id="password">
+          </div>
+          
+          <button id = "login-btn" type="submit" class="btn btn-primary">Log in</button>
+        </form>
+    </div>
+    </body>
 </html>`;
 
 }

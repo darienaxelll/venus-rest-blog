@@ -6,6 +6,7 @@ import darien.venusrestblog.data.UserRole;
 import darien.venusrestblog.repository.UsersRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.oauth2.provider.OAuth2Authentication;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 import javax.validation.Valid;
@@ -18,7 +19,7 @@ import java.util.Optional;
 @RequestMapping(value = "/api/users", produces = "application/json")
 public class UsersController {
 
-    private PasswordEncoder passwordEncoder;
+    private final PasswordEncoder passwordEncoder;
 
     private final UsersRepository usersRepository;
 
@@ -42,8 +43,13 @@ public class UsersController {
     }
 
     @GetMapping("/me")
-    private Optional<User> fetchMe() {
-        return usersRepository.findById(2L);
+    private Optional<User> fetchMe(OAuth2Authentication auth) {
+        if(auth ==  null) {
+            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Please login");
+        }
+        String username = auth.getName();
+        User user = usersRepository.findByUsername(username);
+        return Optional.of(user);
     }
 
     @PostMapping(path = "/create")

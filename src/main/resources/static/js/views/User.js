@@ -16,7 +16,7 @@ export default function meHTML(props) {
 
     <div>
     <div class="card text-white bg-dark mb-3 mt-4" style="max-width: 18rem;">
-      <div class="card-header">User Info <i class="fa-solid fa-user"></i></div>
+      <div class="card-header">User Password <i class="fa-solid fa-key"></i></div>
       <div class="card-body">
         <h5 class="card-title">Reset Password:</h5>
       <div class="row g-3 align-items-center">
