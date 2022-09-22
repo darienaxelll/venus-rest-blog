@@ -32,6 +32,9 @@ export default function Login(props) {
           <div class="mb-3">
             <label for="password" class="form-label">Password</label>
             <input type="password" class="form-control" id="password">
+            <span id="passwordHelpInline" class="form-text">
+                Must be 8-20 characters long.
+            </span>
           </div>
           
           <button id = "login-btn" type="submit" class="btn btn-primary">Log in</button>

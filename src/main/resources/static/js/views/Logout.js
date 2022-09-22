@@ -16,11 +16,13 @@ export default function Logout(props) {
             }
             
             #title-div {
+                margin-top: 2em;
                 display: flex;
                 flex-direction: row;
             }
             
             h1 {
+                align-items: center;
                 align-content: center;
                 color: white;
             }
@@ -140,5 +142,5 @@ export function LogoutEvent() {
         window.localStorage.removeItem("access_token");
         window.localStorage.removeItem("refresh_token");
         createView("/login");
-    }, 5000)
+    }, 3000)
 }

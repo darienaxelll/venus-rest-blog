@@ -9,7 +9,7 @@ export default function Register(props) {
             <title>Register</title>
             <style>
                 body {
-                    background-color: black;
+                    background-color: #222;
                 }
                 #register-div {
                     margin-top: 50px;

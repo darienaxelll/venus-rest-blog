@@ -1,5 +1,5 @@
 import CreateView from "../createView.js";
-import {getHeaders} from "../auth.js";
+import {getHeaders, isLoggedIn} from "../auth.js";
 
 let posts;
 
@@ -48,7 +48,7 @@ export default function PostIndex(props) {
                 ${postsHTML}
             </div>
             <hr>
-            <div id="form-div">
+            <div class="notUser" id="form-div">
             <div class="mb-3">
               <label for="title" class="form-label"><h3>Post Title</h3></label>
               <input type="email" class="form-control" id="title" placeholder="Enter Title">
@@ -57,6 +57,16 @@ export default function PostIndex(props) {
               <label for="content" class="form-label"><h3>Content Area</h3></label>
               <textarea class="form-control" id="content" rows="2" placeholder="Enter Text..."></textarea>
             </div>
+            <div class="dropdown mb-3">
+              <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                Dropdown button
+              </button>
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                <li><a class="dropdown-item" href="#">Action</a></li>
+                <li><a class="dropdown-item" href="#">Another action</a></li>
+                <li><a class="dropdown-item" href="#">Something else here</a></li>
+              </ul>
+            </div>
             <button data-id="0" id="saveButton" type="button" class="btn btn-outline-primary">Save Post</button>
             </div>
         </body>
@@ -64,6 +74,7 @@ export default function PostIndex(props) {
 }
 
 function generatePostHTML(posts) {
+
     let postsHTML = `
     <table class="table table-dark table-striped">
         <thead>
@@ -72,7 +83,7 @@ function generatePostHTML(posts) {
           <th scope="col">Content</th>
           <th scope="col">Author</th>
           <th scope="col">Category</th>
-          <th scope="col">Options</th>
+          <th scope="col" class="notUser">Options</th>
         </tr>
       </thead>
       <tbody>
@@ -102,7 +113,8 @@ function generatePostHTML(posts) {
             <td>${post.content}</td>
             <td>${authorName}</td>
             <td>${categories}</td>
-            <td><button id="editBtn" data-id=${post.id} type="button" class="btn btn-secondary editPost">Edit</button> <button id="deleteBtn" data-id=${post.id} class="btn btn-danger deletePost">Delete</button></td>
+            <td class="notUser"><button id="editBtn" data-id=${post.id} type="button" class="btn btn-secondary editPost">Edit</button>
+                <button id="deleteBtn" data-id=${post.id} class="btn btn-danger deletePost">Delete</button></td>
             </tr>
         `
     }
@@ -114,6 +126,17 @@ export function postSetup() {
     setupSaveHandler();
     setupEditHandlers();
     setupDeletePostHandler();
+    hideStuff();
+}
+
+function hideStuff() {
+    if (isLoggedIn() === false) {
+        let notUsers = document.querySelectorAll(".notUser");
+
+        for (let i = 0; i < notUsers.length; i++) {
+            notUsers[i].setAttribute("hidden", "hidden");
+        }
+    }
 }
 
 function setupEditHandlers() {
